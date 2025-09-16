@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#58A6FF" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Jaswanth's Blog - Your automated source for the latest job notifications, results, and admit cards. Stay updated with government job opportunities." />
+    <meta name="keywords" content="job notifications, admit cards, results, government jobs, recruitment, Jaswanth blog" />
+    <meta name="author" content="Jaswanth" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%" />
+    <meta property="og:title" content="Jaswanth's Blog - Job Notifications & Updates" />
+    <meta property="og:description" content="Your automated source for the latest job notifications, results, and admit cards." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="%PUBLIC_URL%" />
+    <meta property="twitter:title" content="Jaswanth's Blog - Job Notifications & Updates" />
+    <meta property="twitter:description" content="Your automated source for the latest job notifications, results, and admit cards." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    
+    <!-- Font Awesome for Icons -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <!-- Google Fonts: Poppins with display swap for better performance -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" 
+      rel="stylesheet"
+    />
+    
+    <!-- Critical CSS for loading state -->
+    <style>
+      /* Critical loading styles */
+      #root {
+        min-height: 100vh;
+        background-color: #0D1117;
+      }
+      
+      .loading-screen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #0D1117;
+        color: #E6EDF3;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(88, 166, 255, 0.3);
+        border-top: 3px solid #58A6FF;
+        border-radius: 50%;
+        animation: loading-spin 1s linear infinite;
+      }
+      
+      @keyframes loading-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    
+    <title>Jaswanth's Blog - Job Notifications & Updates</title>
+  </head>
+  
+  <body>
+    <noscript>
+      <div style="
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        min-height: 100vh; 
+        background-color: #0D1117; 
+        color: #E6EDF3; 
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      ">
+        <div style="
+          background: rgba(22, 27, 34, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 16px;
+          padding: 2rem;
+          max-width: 500px;
+        ">
+          <h1 style="color: #58A6FF; margin-bottom: 1rem;">JavaScript Required</h1>
+          <p style="color: #848D97; line-height: 1.6;">
+            You need to enable JavaScript to run this application. 
+            This blog requires JavaScript to display job notifications, 
+            admit cards, and results dynamically.
+          </p>
+          <p style="color: #848D97; margin-top: 1rem;">
+            Please enable JavaScript in your browser settings and reload the page.
+          </p>
+        </div>
+      </div>
+    </noscript>
+    
+    <!-- Loading screen that shows while React loads -->
+    <div id="initial-loader" class="loading-screen">
+      <div style="text-align: center;">
+        <div class="loading-spinner" style="margin: 0 auto 1rem;"></div>
+        <p style="color: #848D97; font-size: 0.9rem;">Loading Jaswanth's Blog...</p>
+      </div>
+    </div>
+    
+    <!-- Main React App Container -->
+    <div id="root"></div>
+    
+    <!-- Remove loading screen when React loads -->
+    <script>
+      // Remove initial loader when React starts
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loader = document.getElementById('initial-loader');
+          const root = document.getElementById('root');
+          
+          // Check if React has loaded content
+          const checkReactLoaded = setInterval(function() {
+            if (root && root.children.length > 0) {
+              if (loader) {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                  loader.remove();
+                }, 300);
+              }
+              clearInterval(checkReactLoaded);
+            }
+          }, 100);
+          
+          // Fallback: remove loader after 10 seconds regardless
+          setTimeout(function() {
+            if (loader) {
+              loader.remove();
+            }
+            clearInterval(checkReactLoaded);
+          }, 10000);
+        }, 500);
+      });
+      
+      // Performance monitoring (development only)
+      if (window.location.hostname === 'localhost') {
+        window.addEventListener('load', function() {
+          if ('performance' in window) {
+            const perfData = performance.timing;
+            const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log(`Page load time: ${loadTime}ms`);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

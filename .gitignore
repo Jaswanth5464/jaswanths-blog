@@ -1,0 +1,10 @@
+# Dependencies
+/node_modules
+/frontend/node_modules
+
+# Environment Variables (Secrets!)
+.env
+/frontend/.env
+
+# Build folder
+/frontend/build
